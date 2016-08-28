@@ -15,54 +15,17 @@ const Range = props => {
   }
 
   return <div
-           className='slidershell'
            style={{
-             height: componentHeight + 'px'
+             height: componentHeight + 'px',
+             border: '0 none',
+             position: 'relative',
+             left: 0,
+             top: 0,
+             overflow: 'visible'
            }}>
            <style dangerouslySetInnerHTML={{
              __html:
                `
-               .slider {
-                 position:absolute;
-                 left:0px;
-                 top:0px;
-                 overflow:visible;
-                 z-index:100;
-               }
-
-               .slidershell {
-                 border:0 none;
-                 position:relative;
-                 left:0px;
-                 top:0px;
-                 overflow:visible;
-               }
-
-               .slidertrack {
-                 border:0;
-                 position:absolute;
-                 background:rgba(254, 254, 254, 0.6);
-               }
-
-               .sliderfill {
-                 border:0;
-               	position:absolute;
-                 pointer-events:none;
-               }
-
-               .sliderthumb {
-               	position:absolute;
-                 left:0px;
-                 top:0px;
-                 border:0 none;
-
-               	padding:0px;
-                 margin:0px;
-                 text-align:center;
-
-               	pointer-events:none;
-               }
-
                input[type=range]::-ms-track {
                  width:100%;
                  height:100%;
@@ -152,15 +115,19 @@ const Range = props => {
              }}>
             </style>
            <div
-             className='slidertrack'
              style={{
+               border: 0,
+               position: 'absolute',
+               background: 'rgba(254, 254, 254, 0.6)',
                borderRadius: props.height + 'px',
                width: `100%`,
                ...trackPosition
              }}></div>
            <div
-             className='sliderfill'
              style={{
+               border: 0,
+               position: 'absolute',
+               pointerEvents: 'none',
                borderRadius: props.height + 'px',
                background: props.color,
                width: `calc(100% * ${percentProgress} + ${(1 - percentProgress) * componentHeight}px)`,
@@ -168,8 +135,14 @@ const Range = props => {
              }}></div>
              {props.hideThumb ? null
              : <div
-                className='sliderthumb'
                 style={{
+                  position: 'absolute',
+                  top: 0,
+                  border: '0 none',
+                  padding: 0,
+                  margin: 0,
+                  textAlign: 'center',
+                  pointerEvents: 'none',
                   width: componentHeight,
                   height: componentHeight + 'px',
                   borderRadius: componentHeight + 'px',
@@ -187,8 +160,11 @@ const Range = props => {
                height: componentHeight,
                WebkitAppearance: 'none',
                background: 'transparent',
+               position: 'absolute',
+               left: 0,
+               overflow: 'visible',
+               zIndex: 100
              }}
-             className='slider'
              type='range'
              onChange={props.onChange}
              min={min}
