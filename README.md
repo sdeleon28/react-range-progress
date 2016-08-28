@@ -27,3 +27,4 @@ The following properties are set with an object with properties r, g, b, a to se
 
 # TODO
 * Write actual tests
+* Add a nice demo website
