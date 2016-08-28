@@ -1,6 +1,6 @@
 {
   "name": "react-range-progress",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Component for react to ease styling of range inputs.",
   "main": "dist/index.js",
   "scripts": {
