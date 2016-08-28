@@ -14,6 +14,8 @@ const Range = props => {
     height: props.height + 'px'
   }
 
+  const toRgbaString = rgbaObject => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`
+
   return <div
            style={{
              height: componentHeight + 'px',
@@ -118,7 +120,7 @@ const Range = props => {
              style={{
                border: 0,
                position: 'absolute',
-               background: 'rgba(254, 254, 254, 0.6)',
+               background: toRgbaString(props.trackColor),
                borderRadius: props.height + 'px',
                width: `100%`,
                ...trackPosition
@@ -129,7 +131,7 @@ const Range = props => {
                position: 'absolute',
                pointerEvents: 'none',
                borderRadius: props.height + 'px',
-               background: props.color,
+               background: toRgbaString(props.fillColor),
                width: `calc(100% * ${percentProgress} + ${(1 - percentProgress) * componentHeight}px)`,
                ...trackPosition
              }}></div>
@@ -146,7 +148,7 @@ const Range = props => {
                   width: componentHeight,
                   height: componentHeight + 'px',
                   borderRadius: componentHeight + 'px',
-                  background: props.thumbColor || props.color,
+                  background: toRgbaString(props.thumbColor),
                   boxShadow: '0 0 3px black',
                   left: `calc((100% - ${componentHeight}px) * ${percentProgress})` }}>
                 </div>}
@@ -173,16 +175,26 @@ const Range = props => {
 }
 
 Range.defaultProps = {
-  color: '#eee',
+  fillColor: {r: 20, g: 20, b: 180, a: 1},
+  trackColor: {r: 255, g: 255, b: 255, a: 0.5},
+  thumbColor: {r: 255, g: 255, b: 255, a: 1},
   thumbSize: 12,
   height: 6,
   min: 0,
   max: 100
 }
 
+const colorWithAlpha = {
+  r: PropTypes.number.isRequired,
+  g: PropTypes.number.isRequired,
+  b: PropTypes.number.isRequired,
+  a: PropTypes.number.isRequired
+}
+
 Range.propTypes = {
-  color: PropTypes.string,
-  thumbColor: PropTypes.string,
+  fillColor: PropTypes.shape(colorWithAlpha),
+  trackColor: PropTypes.shape(colorWithAlpha),
+  thumbColor: PropTypes.shape(colorWithAlpha),
   hideThumb: PropTypes.bool,
   height: PropTypes.number,
   thumbSize: PropTypes.number,
