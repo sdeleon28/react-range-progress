@@ -71,13 +71,13 @@ Maximum range value.
 
 ---
 
-> `onChange` - function, required
+> `onChange` - function
 
 Callback called when the range value was changed.
 
 ---
 
-> `value` - number, required
+> `value` - number
 
 Initial range value.
 
@@ -93,21 +93,21 @@ red color:
 
 ---
 
-> `fillColor` - number, required
+> `fillColor` - number
 
-Fills the track part on the left of the thumb.
-
----
-
-> `trackColor` - number, required
-
-Color of the 'empty' part of the track.
+Fills the track part on the left of the thumb. Defaults to white.
 
 ---
 
-> `thumbColor` - number, required
+> `trackColor` - number
 
-Thumb color.
+Color of the 'empty' part of the track. Defaults to white with 50% opacity.
+
+---
+
+> `thumbColor` - number
+
+Thumb color. Defaults to white.
 
 
 ### Test (todo)

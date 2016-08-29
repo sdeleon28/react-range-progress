@@ -175,13 +175,15 @@ const Range = props => {
 }
 
 Range.defaultProps = {
-  fillColor: {r: 20, g: 20, b: 180, a: 1},
+  fillColor: {r: 255, g: 255, b: 255, a: 1},
   trackColor: {r: 255, g: 255, b: 255, a: 0.5},
   thumbColor: {r: 255, g: 255, b: 255, a: 1},
   thumbSize: 12,
   height: 6,
   min: 0,
-  max: 100
+  max: 100,
+  value: 0,
+  onChange: () => {}
 }
 
 const colorWithAlpha = {
@@ -200,8 +202,8 @@ Range.propTypes = {
   thumbSize: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired
+  onChange: PropTypes.func,
+  value: PropTypes.number
 }
 
 export default Range
