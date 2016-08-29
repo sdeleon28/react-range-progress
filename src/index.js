@@ -114,8 +114,8 @@ const Range = props => {
                input[type=range]::-ms-tooltip {
                   display: none;
                }`
-             }}>
-            </style>
+           }}>
+          </style>
            <div
              style={{
                border: 0,
