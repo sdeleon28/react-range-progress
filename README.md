@@ -36,7 +36,7 @@ var RangeDemo = React.createClass({
   }
 })
 
-ReactDOM.render(<FilesDemo />, document.getElementById('container'))
+ReactDOM.render(<RangeDemo />, document.getElementById('container'))
 ```
 
 ### Props
