@@ -93,19 +93,19 @@ red color:
 
 ---
 
-> `fillColor` - number
+> `fillColor` - color shape
 
 Fills the track part on the left of the thumb. Defaults to white.
 
 ---
 
-> `trackColor` - number
+> `trackColor` - color shape
 
 Color of the 'empty' part of the track. Defaults to white with 50% opacity.
 
 ---
 
-> `thumbColor` - number
+> `thumbColor` - color shape
 
 Thumb color. Defaults to white.
 
@@ -118,4 +118,4 @@ npm test
 
 ### License
 
-MIT. Copyright (c) 2016 Jared Reich.
+MIT. Copyright (c) 2016 Vincent Grafé.
