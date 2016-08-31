@@ -5,7 +5,7 @@ react-range-progress
 
 ## Demo (todo)
 
-Coming soon.
+You can play around with a few properties [here](https://vgrafe.github.io/react-range-progress/)
 
 ## Installation
 
@@ -129,5 +129,5 @@ npm test
 ```
 
 ### License
- 
+
 MIT. Copyright (c) 2016 Vincent Grafé.
