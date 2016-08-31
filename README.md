@@ -23,20 +23,30 @@ import ReactDOM from 'react-dom'
 import Range from 'react-range-progress'
 
 var RangeDemo = React.createClass({
+  getInitialState: function() {
+    return {rangeValue: 0}
+  },
+
+  onValueChange: function(e) {
+    this.setState({rangeValue: parseInt(e.nativeEvent.target.value, 10)})
+  },
+
   render: function() {
     return (
-      <div style={{width: 300}}>
+      <div style={{width: 300, margin: 120}}>
+        <p>Value: {this.state.rangeValue}</p>
         <Range
-          hideThumb={!!this.state.thumb}
-          height={this.state.height}
-          onChange={this.onValueChange.bind(this)}
+          fillColor={{r: 200, g: 60, b: 60, a: 1}}
+          trackColor={{r: 128, g: 128, b: 128, a: 0.5}}
+          thumbColor={{r: 255, g: 255, b: 255, a: 1}}
+          onChange={this.onValueChange}
           value={this.state.rangeValue} />
       </div>
     )
   }
 })
 
-ReactDOM.render(<RangeDemo />, document.getElementById('container'))
+ReactDOM.render(<RangeDemo />, document.getElementById('root'))
 ```
 
 ### Props
