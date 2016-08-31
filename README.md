@@ -129,5 +129,5 @@ npm test
 ```
 
 ### License
-
+ 
 MIT. Copyright (c) 2016 Vincent Grafé.

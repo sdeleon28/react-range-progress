@@ -16,7 +16,7 @@ test('Testing react component', (t) => {
   // Shallow rendering
   const component = createComponent.shallow(<Range onChange={handler} value={0} />)
   var allInputs = component.findByQuery('input')
-  // Test component props and content 
+  // Test component props and content
   // t.equal(component.props.className, 'default-class', 'ClassName props of component should equal "share"')
   // t.equal(component.text, 'share', 'Label props of component should be rendered as Button text "share"')
 
