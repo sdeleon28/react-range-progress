@@ -17,6 +17,8 @@ npm install react-range-progress --save
 
 The range control will stretch horizontally 100% width of the parent container.
 
+Example using [create-react-app](https://github.com/facebookincubator/create-react-app):
+
 ```js
 import React from 'react'
 import ReactDOM from 'react-dom'
