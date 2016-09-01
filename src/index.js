@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 
+export const toRgbaString = rgbaObject => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`
+
 const Range = props => {
   const val = props.value
   const min = props.min
@@ -13,8 +15,6 @@ const Range = props => {
     top: (props.thumbSize - Math.min(props.height, props.thumbSize)) / 2,
     height: props.height + 'px'
   }
-
-  const toRgbaString = rgbaObject => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`
 
   return <div
            style={{
