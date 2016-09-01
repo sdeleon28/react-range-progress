@@ -49,7 +49,7 @@ test('Testing trackPosition with thumb lower than track', (t) => {
   t.end()
 })
 
-test('Testing component when no props set - default values', (t) => {
+test('Testing component default values when no props set', (t) => {
   const component = createComponent.shallow(<Range />)
 
   const defaultProps = {
@@ -87,18 +87,26 @@ test('Testing component when no props set - default values', (t) => {
   t.end()
 })
 
-test('Testing when setting props', (t) => {
+test('Testing when height > thumbsize', (t) => {
   const bigVal = 43
   const smallVal = 13
+  const component = createComponent.shallow(<Range height={bigVal} thumbSize={smallVal} />)
+  t.equal(component.props.style.height, `${bigVal}px`, 'when height > thumbsize, base div is set to height prop')
+  t.end()
+})
 
-  const component1 = createComponent.shallow(<Range height={bigVal} thumbSize={smallVal} />)
-  t.equal(component1.props.style.height, `${bigVal}px`, 'when height > thumbsize, base div is set to height prop')
+test('Testing when height < thumbsize', (t) => {
+  const bigVal = 43
+  const smallVal = 13
+  const component = createComponent.shallow(<Range height={smallVal} thumbSize={bigVal} />)
+  t.equal(component.props.style.height, `${bigVal}px`, 'when height > thumbsize, base div is set to height prop')
+  t.end()
+})
 
-  const component2 = createComponent.shallow(<Range height={smallVal} thumbSize={bigVal} />)
-  t.equal(component2.props.style.height, `${bigVal}px`, 'when height < thumbsize, base div is set to thumbsize prop')
-
-  const handler = () => {
-    // nothing yet!
+test('Testing when setting props', (t) => {
+  let handlerWasFired = false
+  const handler = e => {
+    handlerWasFired = e
   }
 
   const color0 = {
@@ -121,6 +129,24 @@ test('Testing when setting props', (t) => {
     b: 76,
     a: 0.87
   }
+
+  const component = createComponent.shallow(
+    <Range
+      fillColor={color0}
+      trackColor={color1}
+      onChange={handler} />
+    )
+
+  const fillDiv = component.children[2]
+  t.equal(fillDiv.props.style.background, toRgbaString(color0), 'fill div is colored as fillColor')
+
+  const trackDiv = component.children[1]
+  t.equal(trackDiv.props.style.background, toRgbaString(color1), 'track div is colored as trackColor')
+
+  const allInputs = component.findByQuery('input')
+  const rangeInput = allInputs[0]
+  rangeInput.onChange(99)
+  t.equal(handlerWasFired, 99, 'handler is fired when range value is changed')
 
   t.end()
 })
