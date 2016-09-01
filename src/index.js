@@ -1,5 +1,12 @@
 import React, { PropTypes } from 'react'
 
+export const toRgbaString = rgbaObject => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`
+
+export const trackPosition = ({thumbSize, height}) => ({
+  top: (thumbSize - Math.min(height, thumbSize)) / 2,
+  height: height + 'px'
+})
+
 const Range = props => {
   const val = props.value
   const min = props.min
@@ -8,13 +15,6 @@ const Range = props => {
   const percentProgress = val / (max - min)
 
   const componentHeight = Math.max(props.height, props.thumbSize)
-
-  const trackPosition = {
-    top: (props.thumbSize - Math.min(props.height, props.thumbSize)) / 2,
-    height: props.height + 'px'
-  }
-
-  const toRgbaString = rgbaObject => `rgba(${rgbaObject.r}, ${rgbaObject.g}, ${rgbaObject.b}, ${rgbaObject.a})`
 
   return <div
            style={{
@@ -123,7 +123,7 @@ const Range = props => {
                background: toRgbaString(props.trackColor),
                borderRadius: props.height + 'px',
                width: `100%`,
-               ...trackPosition
+               ...trackPosition(props)
              }}></div>
            <div
              style={{
@@ -133,7 +133,7 @@ const Range = props => {
                borderRadius: props.height + 'px',
                background: toRgbaString(props.fillColor),
                width: `calc(100% * ${percentProgress} + ${(1 - percentProgress) * componentHeight}px)`,
-               ...trackPosition
+               ...trackPosition(props)
              }}></div>
              {props.hideThumb ? null
              : <div
@@ -154,7 +154,7 @@ const Range = props => {
                 </div>}
            <input
              style={{
-               ...trackPosition,
+               ...trackPosition(props),
                width: 'calc(100% - ' + componentHeight + 'px)',
                marginLeft: componentHeight / 2,
                marginRight: componentHeight / 2,
