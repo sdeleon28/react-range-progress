@@ -117,7 +117,7 @@ const Range = props => {
            }}>
           </style>
            <div
-             id='track'
+             id='rrp-track'
              style={{
                border: 0,
                position: 'absolute',
@@ -127,7 +127,7 @@ const Range = props => {
                ...trackPosition(props)
              }}></div>
            <div
-             id='fill'
+             id='rrp-fill'
              style={{
                border: 0,
                position: 'absolute',
@@ -139,7 +139,7 @@ const Range = props => {
              }}></div>
              {props.hideThumb ? null
              : <div
-                id='thumb'
+                id='rrp-thumb'
                 style={{
                   position: 'absolute',
                   top: 0,

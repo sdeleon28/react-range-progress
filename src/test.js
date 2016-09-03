@@ -66,9 +66,9 @@ test('Testing component default values when no props set', (t) => {
   const percentProgress = defaultProps.value / (defaultProps.max - defaultProps.min)
 
   const rangeInput = component.findByQuery('input')[0]
-  const trackDiv = component.findByQuery('#track')[0]
-  const fillDiv = component.findByQuery('#fill')[0]
-  const thumb = component.findByQuery('#thumb')[0]
+  const trackDiv = component.findByQuery('#rrp-track')[0]
+  const fillDiv = component.findByQuery('#rrp-fill')[0]
+  const thumb = component.findByQuery('#rrp-thumb')[0]
 
   t.equal(component.props.style.height, `${defaultProps.thumbSize}px`, 'base div is thumb default size')
 
@@ -107,7 +107,7 @@ test('Testing when height < thumbsize', (t) => {
 
 test('Testing when hideThumb = true', (t) => {
   const component = createComponent.shallow(<Range hideThumb />)
-  const thumb = component.findByQuery('#thumb')[0]
+  const thumb = component.findByQuery('#rrp-thumb')[0]
   t.equal(thumb, undefined, 'thumb is not displayed')
   t.end()
 })
@@ -148,13 +148,13 @@ test('Testing when setting props', (t) => {
       onChange={handler} />
     )
 
-  const fillDiv = component.findByQuery('#fill')[0]
+  const fillDiv = component.findByQuery('#rrp-fill')[0]
   t.equal(fillDiv.props.style.background, toRgbaString(color0), 'fill div is colored as fillColor')
 
-  const trackDiv = component.findByQuery('#track')[0]
+  const trackDiv = component.findByQuery('#rrp-track')[0]
   t.equal(trackDiv.props.style.background, toRgbaString(color1), 'track div is colored as trackColor')
 
-  const thumb = component.findByQuery('#thumb')[0]
+  const thumb = component.findByQuery('#rrp-thumb')[0]
   t.equal(thumb.props.style.background, toRgbaString(color2), 'thumb is colored as thumbColor')
   t.equal(thumb.props.style.height, '98px', 'thumb height = thumbSize')
   t.equal(thumb.props.style.width, 98, 'thumb width = thumbSize')
