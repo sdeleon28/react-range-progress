@@ -1,7 +1,9 @@
 react-range-progress
 =======================
 
-> A visually customizable range input component for react, inspired by [a post on css-tricks](https://css-tricks.com/custom-interactive-range-inputs/).
+[![Travis](https://img.shields.io/travis/vgrafe/react-range-progress.svg?maxAge=2592000)](https://travis-ci.org/vgrafe/react-range-progress) [![Codecov](https://img.shields.io/codecov/c/github/vgrafe/react-range-progress.svg?maxAge=2592000)](https://codecov.io/gh/vgrafe/react-range-progress) [![npm](https://img.shields.io/npm/dt/react-range-progress.svg?maxAge=2592000)](https://www.npmjs.com/package/react-range-progress)
+
+A visually customizable range input component for react, inspired by [a post on css-tricks](https://css-tricks.com/custom-interactive-range-inputs/).
 
 ## Demo (todo)
 
