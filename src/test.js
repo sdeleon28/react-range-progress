@@ -65,10 +65,10 @@ test('Testing component default values when no props set', (t) => {
 
   const percentProgress = defaultProps.value / (defaultProps.max - defaultProps.min)
 
-  const allInputs = component.findByQuery('input')
-  const rangeInput = allInputs[0]
-  const trackDiv = component.children[1]
-  const fillDiv = component.children[2]
+  const rangeInput = component.findByQuery('input')[0]
+  const trackDiv = component.findByQuery('#track')[0]
+  const fillDiv = component.findByQuery('#fill')[0]
+  const thumb = component.findByQuery('#thumb')[0]
 
   t.equal(component.props.style.height, `${defaultProps.thumbSize}px`, 'base div is thumb default size')
 
@@ -83,6 +83,8 @@ test('Testing component default values when no props set', (t) => {
   t.equal(fillDiv.props.style.background, toRgbaString(defaultProps.fillColor), 'default fill color is set on fill div')
   t.equal(fillDiv.props.style.borderRadius, `${defaultProps.height}px`, 'fill div corner radius equals height prop')
   t.equal(fillDiv.props.style.width, `calc(100% * ${percentProgress} + ${(1 - percentProgress) * defaultProps.thumbSize}px)`, 'width is 0')
+
+  t.equal(thumb.props.style.background, toRgbaString(defaultProps.thumbColor), 'default thumb color is set on thumb div')
 
   t.end()
 })
@@ -100,6 +102,13 @@ test('Testing when height < thumbsize', (t) => {
   const smallVal = 13
   const component = createComponent.shallow(<Range height={smallVal} thumbSize={bigVal} />)
   t.equal(component.props.style.height, `${bigVal}px`, 'when height > thumbsize, base div is set to height prop')
+  t.end()
+})
+
+test('Testing when hideThumb = true', (t) => {
+  const component = createComponent.shallow(<Range hideThumb />)
+  const thumb = component.findByQuery('#thumb')[0]
+  t.equal(thumb, undefined, 'thumb is not displayed')
   t.end()
 })
 
@@ -132,19 +141,25 @@ test('Testing when setting props', (t) => {
 
   const component = createComponent.shallow(
     <Range
+      thumbSize={98}
+      thumbColor={color2}
       fillColor={color0}
       trackColor={color1}
       onChange={handler} />
     )
 
-  const fillDiv = component.children[2]
+  const fillDiv = component.findByQuery('#fill')[0]
   t.equal(fillDiv.props.style.background, toRgbaString(color0), 'fill div is colored as fillColor')
 
-  const trackDiv = component.children[1]
+  const trackDiv = component.findByQuery('#track')[0]
   t.equal(trackDiv.props.style.background, toRgbaString(color1), 'track div is colored as trackColor')
 
-  const allInputs = component.findByQuery('input')
-  const rangeInput = allInputs[0]
+  const thumb = component.findByQuery('#thumb')[0]
+  t.equal(thumb.props.style.background, toRgbaString(color2), 'thumb is colored as thumbColor')
+  t.equal(thumb.props.style.height, '98px', 'thumb height = thumbSize')
+  t.equal(thumb.props.style.width, 98, 'thumb width = thumbSize')
+
+  const rangeInput = component.findByQuery('input')[0]
   rangeInput.onChange(99)
   t.equal(handlerWasFired, 99, 'handler is fired when range value is changed')
 

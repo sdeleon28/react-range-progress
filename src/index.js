@@ -117,6 +117,7 @@ const Range = props => {
            }}>
           </style>
            <div
+             id='track'
              style={{
                border: 0,
                position: 'absolute',
@@ -126,6 +127,7 @@ const Range = props => {
                ...trackPosition(props)
              }}></div>
            <div
+             id='fill'
              style={{
                border: 0,
                position: 'absolute',
@@ -137,6 +139,7 @@ const Range = props => {
              }}></div>
              {props.hideThumb ? null
              : <div
+                id='thumb'
                 style={{
                   position: 'absolute',
                   top: 0,
