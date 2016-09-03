@@ -51,10 +51,10 @@
     "tape": "4.6.0",
     "tape-jsx-equals": "1.0.0"
   },
-  "czConfig": {
-    "path": "node_modules/cz-conventional-changelog"
-  },
   "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
     "ghooks": {
       "pre-commit": "npm run test"
     }
