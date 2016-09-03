@@ -5,7 +5,7 @@ react-range-progress
 
 A visually customizable range input component for react, inspired by [a post on css-tricks](https://css-tricks.com/custom-interactive-range-inputs/).
 
-## Demo (todo)
+## Demo
 
 You can play around with a few properties [here](https://vgrafe.github.io/react-range-progress/)
 
@@ -124,7 +124,7 @@ Color of the 'empty' part of the track. Defaults to white with 50% opacity.
 Thumb color. Defaults to white.
 
 
-### Test (todo)
+### Run the tests
 
 ```
 npm test
