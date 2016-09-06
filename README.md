@@ -5,61 +5,27 @@ react-range-progress
 
 A visually customizable range input component for react, inspired by [a post on css-tricks](https://css-tricks.com/custom-interactive-range-inputs/).
 
-## Demo
-
-You can play around with a few properties [here](https://vgrafe.github.io/react-range-progress/)
-
 ## Installation
 
 ```
 npm install react-range-progress --save
 ```
 
-## Usage
+## Playground
 
-The range control will stretch horizontally 100% width of the parent container.
+You can play around with a few properties on [webpackbin](http://www.webpackbin.com/VkXZkAUsW)
 
-Example using [create-react-app](https://github.com/facebookincubator/create-react-app):
-
-```js
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Range from 'react-range-progress'
-
-var RangeDemo = React.createClass({
-  getInitialState: function() {
-    return {rangeValue: 0}
-  },
-
-  onValueChange: function(e) {
-    this.setState({rangeValue: parseInt(e.nativeEvent.target.value, 10)})
-  },
-
-  render: function() {
-    return (
-      <div style={{width: 300, margin: 120}}>
-        <p>Value: {this.state.rangeValue}</p>
-        <Range
-          fillColor={{r: 200, g: 60, b: 60, a: 1}}
-          trackColor={{r: 128, g: 128, b: 128, a: 0.5}}
-          thumbColor={{r: 255, g: 255, b: 255, a: 1}}
-          onChange={this.onValueChange}
-          value={this.state.rangeValue} />
-      </div>
-    )
-  }
-})
-
-ReactDOM.render(<RangeDemo />, document.getElementById('root'))
-```
-
-### Props
+## Props
 
 `hideThumb` - Boolean: Set to true to hide the thumb.
 
 ---
 
 `height` - number: Track height in pixels.
+
+---
+
+`width` - number or string: Track width. In pixels when numeric, but can be given 'auto', '80%', etc.
 
 ---
 

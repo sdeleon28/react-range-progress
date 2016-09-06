@@ -31,6 +31,9 @@ class Range extends React.Component {
     const componentHeight = Math.max(this.props.height, this.props.thumbSize)
 
     return <div
+            style={{width: this.props.width}}>
+            <div
+             id='rrp-baseDiv'
              style={{
                height: componentHeight + 'px',
                border: '0 none',
@@ -189,6 +192,7 @@ class Range extends React.Component {
                min={min}
                max={max} />
            </div>
+      </div>
   }
 }
 
@@ -200,6 +204,7 @@ Range.defaultProps = {
   height: 6,
   min: 0,
   max: 100,
+  width: 300,
   value: 0,
   onChange: () => {}
 }
@@ -222,6 +227,10 @@ Range.propTypes = {
   max: PropTypes.number,
   onChange: PropTypes.func,
   value: PropTypes.number,
+  width: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]),
   readOnly: PropTypes.bool
 }
 

@@ -69,8 +69,9 @@ test('Testing component default values when no props set', (t) => {
   const trackDiv = component.findByQuery('#rrp-track')[0]
   const fillDiv = component.findByQuery('#rrp-fill')[0]
   const thumb = component.findByQuery('#rrp-thumb')[0]
+  const baseDiv = component.findByQuery('#rrp-baseDiv')[0]
 
-  t.equal(component.props.style.height, `${defaultProps.thumbSize}px`, 'base div is thumb default size')
+  t.equal(baseDiv.props.style.height, `${defaultProps.thumbSize}px`, 'base div is thumb default size')
 
   t.equal(rangeInput.props.min, defaultProps.min, 'default min value is set on range input')
   t.equal(rangeInput.props.max, defaultProps.max, 'default max value is set on range input')
@@ -93,7 +94,8 @@ test('Testing when height > thumbsize', (t) => {
   const bigVal = 43
   const smallVal = 13
   const component = createComponent.shallow(<Range height={bigVal} thumbSize={smallVal} />)
-  t.equal(component.props.style.height, `${bigVal}px`, 'when height > thumbsize, base div is set to height prop')
+  const baseDiv = component.findByQuery('#rrp-baseDiv')[0]
+  t.equal(baseDiv.props.style.height, `${bigVal}px`, 'when height > thumbsize, base div is set to height prop')
   t.end()
 })
 
@@ -101,7 +103,8 @@ test('Testing when height < thumbsize', (t) => {
   const bigVal = 43
   const smallVal = 13
   const component = createComponent.shallow(<Range height={smallVal} thumbSize={bigVal} />)
-  t.equal(component.props.style.height, `${bigVal}px`, 'when height > thumbsize, base div is set to height prop')
+  const baseDiv = component.findByQuery('#rrp-baseDiv')[0]
+  t.equal(baseDiv.props.style.height, `${bigVal}px`, 'when height < thumbsize, base div is set to thumbSize prop')
   t.end()
 })
 
