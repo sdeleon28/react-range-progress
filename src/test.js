@@ -159,9 +159,31 @@ test('Testing when setting props', (t) => {
   t.equal(thumb.props.style.height, '98px', 'thumb height = thumbSize')
   t.equal(thumb.props.style.width, 98, 'thumb width = thumbSize')
 
+  // nativEvent throws - needs fix
   const rangeInput = component.findByQuery('input')[0]
   rangeInput.onChange(99)
   t.equal(handlerWasFired, 99, 'handler is fired when range value is changed')
+
+  t.end()
+})
+
+test('Testing with readOnly = true', (t) => {
+  let handlerWasFired = false
+  const handler = e => {
+    handlerWasFired = e
+  }
+
+  const component = createComponent.shallow(
+    <Range
+      value={12}
+      onChange={handler}
+      readOnly />
+  )
+
+  // nativEvent throws - needs fix
+  const rangeInput = component.findByQuery('input')[0]
+  rangeInput.onChange(99)
+  t.equal(handlerWasFired, false, 'handler is NOT fired when range value is changed')
 
   t.end()
 })

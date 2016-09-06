@@ -55,45 +55,31 @@ ReactDOM.render(<RangeDemo />, document.getElementById('root'))
 
 ### Props
 
-> `hideThumb` - Boolean
-
-Set to true to hide the thumb.
+`hideThumb` - Boolean: Set to true to hide the thumb.
 
 ---
 
-> `height` - number
-
-Track height in pixels.
+`height` - number: Track height in pixels.
 
 ---
 
-> `thumbSize` - number
-
-Thumb size in pixels.
+`thumbSize` - number: Thumb size in pixels.
 
 ---
 
-> `min` - number
-
-Minimum range value.
+`min` - number: Minimum range value.
 
 ---
 
-> `max` - number
-
-Maximum range value.
+`max` - number: Maximum range value.
 
 ---
 
-> `onChange` - function
-
-Callback called when the range value was changed.
+`onChange` - function: Callback called when the range value was changed.
 
 ---
 
-> `value` - number
-
-Initial range value.
+`value` - number: Initial range value.
 
 ---
 
@@ -107,21 +93,18 @@ red color:
 
 ---
 
-> `fillColor` - color shape
-
-Fills the track part on the left of the thumb. Defaults to white.
+`fillColor` - color shape: Fills the track part on the left of the thumb. Defaults to white.
 
 ---
 
-> `trackColor` - color shape
+`trackColor` - color shape: Color of the 'empty' part of the track. Defaults to white with 50% opacity.
 
-Color of the 'empty' part of the track. Defaults to white with 50% opacity.
+---
+`readOnly` - bool: self explanatory.
 
 ---
 
-> `thumbColor` - color shape
-
-Thumb color. Defaults to white.
+`thumbColor` - color shape: Thumb color. Defaults to white.
 
 
 ### Run the tests
