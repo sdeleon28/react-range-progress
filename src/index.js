@@ -45,6 +45,9 @@ class Range extends React.Component {
              <style dangerouslySetInnerHTML={{
                __html:
                  `
+                 input[type='range']::-moz-focus-outer {
+                   border: 0;
+                 }
                  input[type=range]::-ms-track {
                    width:100%;
                    height:100%;
