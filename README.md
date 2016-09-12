@@ -11,6 +11,8 @@ A visually customizable range input component for react, inspired by [a post on 
 npm install react-range-progress --save
 ```
 
+You can also import from [npmcdn](https://npmcdn.com/react-range-progress) or [unpkg](https://unpkg.com/react-range-progress).
+
 ## Playground
 
 You can play around with a few properties on [webpackbin](http://www.webpackbin.com/VkXZkAUsW)
