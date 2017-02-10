@@ -13,6 +13,12 @@ class Range extends React.Component {
     this.state = {value: 0}
   }
 
+  componentWillReceiveProps(nextProps){
+        this.setState({
+            value:nextProps.value
+        });
+  }
+  
   onChange (e) {
     if (!this.props.readOnly) {
       const newVal = parseInt(e.nativeEvent ? e.nativeEvent.target.value : e, 10)
