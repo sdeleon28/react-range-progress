@@ -15,7 +15,7 @@ You can also import from [npmcdn](https://npmcdn.com/react-range-progress) or [u
 
 ## Playground
 
-You can play around with a few properties on [webpackbin](http://www.webpackbin.com/VkXZkAUsW)
+You can play around with a few properties on [codesandbox](https://codesandbox.io/s/JqRpW8Mw2)
 
 ## Props
 
