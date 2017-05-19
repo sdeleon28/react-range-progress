@@ -83,4 +83,4 @@ npm test
 
 ### License
 
-MIT. Copyright (c) 2016 Vincent Grafé.
+MIT. Copyright (c) 2017 Vincent Grafé.

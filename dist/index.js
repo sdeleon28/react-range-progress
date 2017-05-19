@@ -26,8 +26,8 @@ var toRgbaString = exports.toRgbaString = function toRgbaString(rgbaObject) {
 };
 
 var trackPosition = exports.trackPosition = function trackPosition(_ref) {
-  var thumbSize = _ref.thumbSize;
-  var height = _ref.height;
+  var thumbSize = _ref.thumbSize,
+      height = _ref.height;
   return {
     top: (thumbSize - Math.min(height, thumbSize)) / 2,
     height: height + 'px'
@@ -47,6 +47,13 @@ var Range = function (_React$Component) {
   }
 
   _createClass(Range, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.setState({
+        value: nextProps.value
+      });
+    }
+  }, {
     key: 'onChange',
     value: function onChange(e) {
       if (!this.props.readOnly) {
@@ -83,7 +90,7 @@ var Range = function (_React$Component) {
               overflow: 'visible'
             } },
           _react2.default.createElement('style', { dangerouslySetInnerHTML: {
-              __html: '\n                 input[type=range]::-ms-track {\n                   width:100%;\n                   height:100%;\n\n                   -webkit-appearance:none;\n                   margin:0px;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range]::-moz-range-track {\n                   width:100%;\n                   height:100%;\n\n                   -moz-appearance:none;\n                   margin:0px;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range] {\n                   cursor: pointer;\n\n                   -webkit-appearance:none;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range]:focus::-webkit-slider-runnable-track {\n                   background:transparent;\n                   border:transparent;\n                 }\n\n                 input[type=range]:focus {\n                   outline: none;\n                 }\n\n                 input[type=range]::-ms-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                 }\n                 input[type=range]::-moz-range-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                 }\n                 input[type=range]::-webkit-slider-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                   -webkit-appearance:none;\n                 }\n\n                 input[type=range]::-ms-fill-lower {\n                   background:transparent;\n                   border:0 none;\n                 }\n                 input[type=range]::-ms-fill-upper {\n                   background:transparent;\n                   border:0 none;\n                 }\n                 input[type=range]::-ms-tooltip {\n                    display: none;\n                 }'
+              __html: '\n                 input[type=\'range\']::-moz-focus-outer {\n                   border: 0;\n                 }\n                 input[type=range]::-ms-track {\n                   width:100%;\n                   height:100%;\n\n                   -webkit-appearance:none;\n                   margin:0px;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range]::-moz-range-track {\n                   width:100%;\n                   height:100%;\n\n                   -moz-appearance:none;\n                   margin:0px;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range] {\n                   cursor: pointer;\n\n                   -webkit-appearance:none;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range]:focus::-webkit-slider-runnable-track {\n                   background:transparent;\n                   border:transparent;\n                 }\n\n                 input[type=range]:focus {\n                   outline: none;\n                 }\n\n                 input[type=range]::-ms-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                 }\n                 input[type=range]::-moz-range-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                 }\n                 input[type=range]::-webkit-slider-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                   -webkit-appearance:none;\n                 }\n\n                 input[type=range]::-ms-fill-lower {\n                   background:transparent;\n                   border:0 none;\n                 }\n                 input[type=range]::-ms-fill-upper {\n                   background:transparent;\n                   border:0 none;\n                 }\n                 input[type=range]::-ms-tooltip {\n                    display: none;\n                 }'
             } }),
           _react2.default.createElement('div', {
             id: 'rrp-track',
