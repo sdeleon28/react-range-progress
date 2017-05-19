@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/vgrafe/react-range-progress#readme",
   "dependencies": {
+    "cz-conventional-changelog": "^2.0.0",
     "react": "15.3.1",
     "react-dom": "15.3.1"
   },
