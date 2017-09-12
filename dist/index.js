@@ -75,8 +75,7 @@ var Range = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        {
-          style: { width: this.props.width } },
+        { style: { width: this.props.width } },
         _react2.default.createElement(
           'div',
           {
@@ -88,10 +87,13 @@ var Range = function (_React$Component) {
               left: 0,
               top: 0,
               overflow: 'visible'
-            } },
-          _react2.default.createElement('style', { dangerouslySetInnerHTML: {
+            }
+          },
+          _react2.default.createElement('style', {
+            dangerouslySetInnerHTML: {
               __html: '\n                 input[type=\'range\']::-moz-focus-outer {\n                   border: 0;\n                 }\n                 input[type=range]::-ms-track {\n                   width:100%;\n                   height:100%;\n\n                   -webkit-appearance:none;\n                   margin:0px;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range]::-moz-range-track {\n                   width:100%;\n                   height:100%;\n\n                   -moz-appearance:none;\n                   margin:0px;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range] {\n                   cursor: pointer;\n\n                   -webkit-appearance:none;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range]:focus::-webkit-slider-runnable-track {\n                   background:transparent;\n                   border:transparent;\n                 }\n\n                 input[type=range]:focus {\n                   outline: none;\n                 }\n\n                 input[type=range]::-ms-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                 }\n                 input[type=range]::-moz-range-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                 }\n                 input[type=range]::-webkit-slider-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                   -webkit-appearance:none;\n                 }\n\n                 input[type=range]::-ms-fill-lower {\n                   background:transparent;\n                   border:0 none;\n                 }\n                 input[type=range]::-ms-fill-upper {\n                   background:transparent;\n                   border:0 none;\n                 }\n                 input[type=range]::-ms-tooltip {\n                    display: none;\n                 }'
-            } }),
+            }
+          }),
           _react2.default.createElement('div', {
             id: 'rrp-track',
             style: _extends({
@@ -100,7 +102,8 @@ var Range = function (_React$Component) {
               background: toRgbaString(this.props.trackColor),
               borderRadius: this.props.height + 'px',
               width: '100%'
-            }, trackPosition(this.props)) }),
+            }, trackPosition(this.props))
+          }),
           _react2.default.createElement('div', {
             id: 'rrp-fill',
             style: _extends({
@@ -110,7 +113,8 @@ var Range = function (_React$Component) {
               borderRadius: this.props.height + 'px',
               background: toRgbaString(this.props.fillColor),
               width: 'calc(100% * ' + percentProgress + ' + ' + (1 - percentProgress) * componentHeight + 'px)'
-            }, trackPosition(this.props)) }),
+            }, trackPosition(this.props))
+          }),
           this.props.hideThumb ? null : _react2.default.createElement('div', {
             id: 'rrp-thumb',
             style: {
@@ -126,7 +130,9 @@ var Range = function (_React$Component) {
               borderRadius: componentHeight + 'px',
               background: toRgbaString(this.props.thumbColor),
               boxShadow: '0 0 3px black',
-              left: 'calc((100% - ' + componentHeight + 'px) * ' + percentProgress + ')' } }),
+              left: 'calc((100% - ' + componentHeight + 'px) * ' + percentProgress + ')'
+            }
+          }),
           _react2.default.createElement('input', {
             style: _extends({}, trackPosition(this.props), {
               width: 'calc(100% - ' + componentHeight + 'px)',
@@ -144,7 +150,8 @@ var Range = function (_React$Component) {
             type: 'range',
             onChange: this.onChange.bind(this),
             min: min,
-            max: max })
+            max: max
+          })
         )
       );
     }
