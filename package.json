@@ -7,37 +7,34 @@
     "commit": "git-cz",
     "test": "babel-tape-runner src/test.js",
     "test:pretty": "babel-tape-runner src/test.js | faucet",
-    "test:nyc": "NODE_ENV=test ./node_modules/nyc/bin/nyc.js -x test.js npm test",
+    "test:nyc":
+      "NODE_ENV=test ./node_modules/nyc/bin/nyc.js -x test.js npm test",
     "coverage": "nyc report --reporter=lcov",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "check-coverage": "nyc check-coverage --functions 70",
+    "check-coverage": "nyc check-coverage --functions 50",
     "build": "./node_modules/.bin/babel ./src/index.js -o ./dist/index.js",
     "prepublish": "npm run build",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release":
+      "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/vgrafe/react-range-progress.git"
   },
-  "keywords": [
-    "react",
-    "range",
-    "progress",
-    "slider",
-    "volume"
-  ],
-  "author": "Vincent Grafé <vincent.grafe@gmail.com> (https://github.com/vgrafe)",
+  "keywords": ["react", "range", "progress", "slider", "volume"],
+  "author":
+    "Vincent Grafé <vincent.grafe@gmail.com> (https://github.com/vgrafe)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vgrafe/react-range-progress/issues"
   },
   "homepage": "https://github.com/vgrafe/react-range-progress#readme",
   "dependencies": {
-    "cz-conventional-changelog": "^2.0.0",
     "react": "15.3.1",
     "react-dom": "15.3.1"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^2.0.0",
     "autoprefixer": "6.4.0",
     "babel-cli": "6.14.0",
     "babel-core": "6.14.0",
@@ -64,18 +61,11 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    },
-    "ghooks": {
-      "pre-commit": "npm run test:nyc && npm run check-coverage"
     }
   },
   "nyc": {
-    "include": [
-      "src/index.js"
-    ],
-    "require": [
-      "babel-register"
-    ],
+    "include": ["src/index.js"],
+    "require": ["babel-register"],
     "sourceMap": false,
     "instrument": false
   }

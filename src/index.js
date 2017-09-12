@@ -5,14 +5,140 @@ export const toRgbaString = rgbaObject =>
 
 export const trackPosition = ({ thumbSize, height }) => ({
   top: (thumbSize - Math.min(height, thumbSize)) / 2,
-  height: height + 'px'
+  height
 });
 
-class Range extends React.Component {
-  constructor() {
-    super();
-    this.state = { value: 0 };
+const baseStyles = {
+  rootStyle: `
+    input[type='range']::-moz-focus-outer {
+      border: 0;
+    }
+    input[type=range]::-ms-track {
+      width:100%;
+      height:100%;
+
+      -webkit-appearance:none;
+      margin:0px;
+      padding:0px;
+      border:0 none;
+
+      background:transparent;
+      color:transparent;
+      overflow:visible;
+    }
+
+    input[type=range]::-moz-range-track {
+      width:100%;
+      height:100%;
+
+      -moz-appearance:none;
+      margin:0px;
+      padding:0px;
+      border:0 none;
+
+      background:transparent;
+      color:transparent;
+      overflow:visible;
+    }
+
+    input[type=range] {
+      cursor: pointer;
+
+      -webkit-appearance:none;
+      padding:0px;
+      border:0 none;
+
+      background:transparent;
+      color:transparent;
+      overflow:visible;
+    }
+
+    input[type=range]:focus::-webkit-slider-runnable-track {
+      background:transparent;
+      border:transparent;
+    }
+
+    input[type=range]:focus {
+      outline: none;
+    }
+
+    input[type=range]::-ms-thumb {
+      width:12px;
+      height:12px;
+
+      border-radius:0px;
+      border:0 none;
+      background:transparent;
+    }
+    input[type=range]::-moz-range-thumb {
+      width:12px;
+      height:12px;
+
+      border-radius:0px;
+      border:0 none;
+      background:transparent;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      width:12px;
+      height:12px;
+
+      border-radius:0px;
+      border:0 none;
+      background:transparent;
+      -webkit-appearance:none;
+    }
+
+    input[type=range]::-ms-fill-lower {
+      background:transparent;
+      border:0 none;
+    }
+    input[type=range]::-ms-fill-upper {
+      background:transparent;
+      border:0 none;
+    }
+    input[type=range]::-ms-tooltip {
+      display: none;
+    }`,
+  baseDiv: {
+    border: '0 none',
+    position: 'relative',
+    left: 0,
+    top: 0,
+    overflow: 'visible'
+  },
+  track: {
+    border: 0,
+    position: 'absolute',
+    width: `100%`
+  },
+  fill: {
+    border: 0,
+    position: 'absolute',
+    pointerEvents: 'none'
+  },
+  thumb: {
+    position: 'absolute',
+    top: 0,
+    border: '0 none',
+    padding: 0,
+    margin: 0,
+    textAlign: 'center',
+    pointerEvents: 'none',
+    boxShadow: '0 0 3px black'
+  },
+  input: {
+    top: 0,
+    WebkitAppearance: 'none',
+    background: 'transparent',
+    position: 'absolute',
+    left: 0,
+    overflow: 'visible',
+    zIndex: 100
   }
+};
+
+class Range extends React.Component {
+  state = { value: 0 };
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -20,7 +146,7 @@ class Range extends React.Component {
     });
   }
 
-  onChange(e) {
+  onChange = e => {
     if (!this.props.readOnly) {
       const newVal = parseInt(
         e.nativeEvent ? e.nativeEvent.target.value : e,
@@ -29,164 +155,71 @@ class Range extends React.Component {
       this.setState({ value: newVal });
       this.props.onChange && this.props.onChange(newVal);
     }
-  }
+  };
 
   render() {
-    const val = Math.min(this.props.max, this.state.value || this.props.value);
-    const min = this.props.min;
-    const max = this.props.max;
+    const {
+      value,
+      min,
+      max,
+      thumbSize,
+      width,
+      trackColor,
+      height,
+      fillColor,
+      hideThumb,
+      thumbColor
+    } = this.props;
+
+    const val = Math.min(max, this.state.value || value);
 
     const percentProgress = val / (max - min);
 
-    const componentHeight = Math.max(this.props.height, this.props.thumbSize);
+    const componentHeight = Math.max(height, thumbSize);
 
     return (
-      <div style={{ width: this.props.width }}>
+      <div style={{ width: width }}>
         <div
           id="rrp-baseDiv"
           style={{
-            height: componentHeight + 'px',
-            border: '0 none',
-            position: 'relative',
-            left: 0,
-            top: 0,
-            overflow: 'visible'
+            ...baseStyles.baseDiv,
+            height: componentHeight
           }}
         >
           <style
             dangerouslySetInnerHTML={{
-              __html: `
-                 input[type='range']::-moz-focus-outer {
-                   border: 0;
-                 }
-                 input[type=range]::-ms-track {
-                   width:100%;
-                   height:100%;
-
-                   -webkit-appearance:none;
-                   margin:0px;
-                   padding:0px;
-                   border:0 none;
-
-                   background:transparent;
-                   color:transparent;
-                   overflow:visible;
-                 }
-
-                 input[type=range]::-moz-range-track {
-                   width:100%;
-                   height:100%;
-
-                   -moz-appearance:none;
-                   margin:0px;
-                   padding:0px;
-                   border:0 none;
-
-                   background:transparent;
-                   color:transparent;
-                   overflow:visible;
-                 }
-
-                 input[type=range] {
-                   cursor: pointer;
-
-                   -webkit-appearance:none;
-                   padding:0px;
-                   border:0 none;
-
-                   background:transparent;
-                   color:transparent;
-                   overflow:visible;
-                 }
-
-                 input[type=range]:focus::-webkit-slider-runnable-track {
-                   background:transparent;
-                   border:transparent;
-                 }
-
-                 input[type=range]:focus {
-                   outline: none;
-                 }
-
-                 input[type=range]::-ms-thumb {
-                   width:12px;
-                   height:12px;
-
-                   border-radius:0px;
-                   border:0 none;
-                   background:transparent;
-                 }
-                 input[type=range]::-moz-range-thumb {
-                   width:12px;
-                   height:12px;
-
-                   border-radius:0px;
-                   border:0 none;
-                   background:transparent;
-                 }
-                 input[type=range]::-webkit-slider-thumb {
-                   width:12px;
-                   height:12px;
-
-                   border-radius:0px;
-                   border:0 none;
-                   background:transparent;
-                   -webkit-appearance:none;
-                 }
-
-                 input[type=range]::-ms-fill-lower {
-                   background:transparent;
-                   border:0 none;
-                 }
-                 input[type=range]::-ms-fill-upper {
-                   background:transparent;
-                   border:0 none;
-                 }
-                 input[type=range]::-ms-tooltip {
-                    display: none;
-                 }`
+              __html: baseStyles.rootStyle
             }}
           />
           <div
             id="rrp-track"
             style={{
-              border: 0,
-              position: 'absolute',
-              background: toRgbaString(this.props.trackColor),
-              borderRadius: this.props.height + 'px',
-              width: `100%`,
+              ...baseStyles.track,
+              borderRadius: height,
+              background: toRgbaString(trackColor),
               ...trackPosition(this.props)
             }}
           />
           <div
             id="rrp-fill"
             style={{
-              border: 0,
-              position: 'absolute',
-              pointerEvents: 'none',
-              borderRadius: this.props.height + 'px',
-              background: toRgbaString(this.props.fillColor),
+              ...baseStyles.fill,
+              borderRadius: height,
+              background: toRgbaString(fillColor),
               width: `calc(100% * ${percentProgress} + ${(1 - percentProgress) *
                 componentHeight}px)`,
               ...trackPosition(this.props)
             }}
           />
-          {this.props.hideThumb ? null : (
+          {hideThumb ? null : (
             <div
               id="rrp-thumb"
               style={{
-                position: 'absolute',
-                top: 0,
-                border: '0 none',
-                padding: 0,
-                margin: 0,
-                textAlign: 'center',
-                pointerEvents: 'none',
+                ...baseStyles.thumb,
                 width: componentHeight,
-                height: componentHeight + 'px',
-                borderRadius: componentHeight + 'px',
-                background: toRgbaString(this.props.thumbColor),
-                boxShadow: '0 0 3px black',
+                height: componentHeight,
+                borderRadius: componentHeight,
+                background: toRgbaString(thumbColor),
                 left: `calc((100% - ${componentHeight}px) * ${percentProgress})`
               }}
             />
@@ -197,17 +230,11 @@ class Range extends React.Component {
               width: 'calc(100% - ' + componentHeight + 'px)',
               marginLeft: componentHeight / 2,
               marginRight: componentHeight / 2,
-              top: 0,
               height: componentHeight,
-              WebkitAppearance: 'none',
-              background: 'transparent',
-              position: 'absolute',
-              left: 0,
-              overflow: 'visible',
-              zIndex: 100
+              ...baseStyles.input
             }}
             type="range"
-            onChange={this.onChange.bind(this)}
+            onChange={this.onChange}
             min={min}
             max={max}
           />

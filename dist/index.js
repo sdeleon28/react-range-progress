@@ -30,20 +30,71 @@ var trackPosition = exports.trackPosition = function trackPosition(_ref) {
       height = _ref.height;
   return {
     top: (thumbSize - Math.min(height, thumbSize)) / 2,
-    height: height + 'px'
+    height: height
   };
+};
+
+var baseStyles = {
+  rootStyle: '\n    input[type=\'range\']::-moz-focus-outer {\n      border: 0;\n    }\n    input[type=range]::-ms-track {\n      width:100%;\n      height:100%;\n\n      -webkit-appearance:none;\n      margin:0px;\n      padding:0px;\n      border:0 none;\n\n      background:transparent;\n      color:transparent;\n      overflow:visible;\n    }\n\n    input[type=range]::-moz-range-track {\n      width:100%;\n      height:100%;\n\n      -moz-appearance:none;\n      margin:0px;\n      padding:0px;\n      border:0 none;\n\n      background:transparent;\n      color:transparent;\n      overflow:visible;\n    }\n\n    input[type=range] {\n      cursor: pointer;\n\n      -webkit-appearance:none;\n      padding:0px;\n      border:0 none;\n\n      background:transparent;\n      color:transparent;\n      overflow:visible;\n    }\n\n    input[type=range]:focus::-webkit-slider-runnable-track {\n      background:transparent;\n      border:transparent;\n    }\n\n    input[type=range]:focus {\n      outline: none;\n    }\n\n    input[type=range]::-ms-thumb {\n      width:12px;\n      height:12px;\n\n      border-radius:0px;\n      border:0 none;\n      background:transparent;\n    }\n    input[type=range]::-moz-range-thumb {\n      width:12px;\n      height:12px;\n\n      border-radius:0px;\n      border:0 none;\n      background:transparent;\n    }\n    input[type=range]::-webkit-slider-thumb {\n      width:12px;\n      height:12px;\n\n      border-radius:0px;\n      border:0 none;\n      background:transparent;\n      -webkit-appearance:none;\n    }\n\n    input[type=range]::-ms-fill-lower {\n      background:transparent;\n      border:0 none;\n    }\n    input[type=range]::-ms-fill-upper {\n      background:transparent;\n      border:0 none;\n    }\n    input[type=range]::-ms-tooltip {\n      display: none;\n    }',
+  baseDiv: {
+    border: '0 none',
+    position: 'relative',
+    left: 0,
+    top: 0,
+    overflow: 'visible'
+  },
+  track: {
+    border: 0,
+    position: 'absolute',
+    width: '100%'
+  },
+  fill: {
+    border: 0,
+    position: 'absolute',
+    pointerEvents: 'none'
+  },
+  thumb: {
+    position: 'absolute',
+    top: 0,
+    border: '0 none',
+    padding: 0,
+    margin: 0,
+    textAlign: 'center',
+    pointerEvents: 'none',
+    boxShadow: '0 0 3px black'
+  },
+  input: {
+    top: 0,
+    WebkitAppearance: 'none',
+    background: 'transparent',
+    position: 'absolute',
+    left: 0,
+    overflow: 'visible',
+    zIndex: 100
+  }
 };
 
 var Range = function (_React$Component) {
   _inherits(Range, _React$Component);
 
   function Range() {
+    var _ref2;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, Range);
 
-    var _this = _possibleConstructorReturn(this, (Range.__proto__ || Object.getPrototypeOf(Range)).call(this));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _this.state = { value: 0 };
-    return _this;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = Range.__proto__ || Object.getPrototypeOf(Range)).call.apply(_ref2, [this].concat(args))), _this), _this.state = { value: 0 }, _this.onChange = function (e) {
+      if (!_this.props.readOnly) {
+        var newVal = parseInt(e.nativeEvent ? e.nativeEvent.target.value : e, 10);
+        _this.setState({ value: newVal });
+        _this.props.onChange && _this.props.onChange(newVal);
+      }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Range, [{
@@ -54,101 +105,77 @@ var Range = function (_React$Component) {
       });
     }
   }, {
-    key: 'onChange',
-    value: function onChange(e) {
-      if (!this.props.readOnly) {
-        var newVal = parseInt(e.nativeEvent ? e.nativeEvent.target.value : e, 10);
-        this.setState({ value: newVal });
-        this.props.onChange && this.props.onChange(newVal);
-      }
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var val = Math.min(this.props.max, this.state.value || this.props.value);
-      var min = this.props.min;
-      var max = this.props.max;
+      var _props = this.props,
+          value = _props.value,
+          min = _props.min,
+          max = _props.max,
+          thumbSize = _props.thumbSize,
+          width = _props.width,
+          trackColor = _props.trackColor,
+          height = _props.height,
+          fillColor = _props.fillColor,
+          hideThumb = _props.hideThumb,
+          thumbColor = _props.thumbColor;
+
+
+      var val = Math.min(max, this.state.value || value);
 
       var percentProgress = val / (max - min);
 
-      var componentHeight = Math.max(this.props.height, this.props.thumbSize);
+      var componentHeight = Math.max(height, thumbSize);
 
       return _react2.default.createElement(
         'div',
-        { style: { width: this.props.width } },
+        { style: { width: width } },
         _react2.default.createElement(
           'div',
           {
             id: 'rrp-baseDiv',
-            style: {
-              height: componentHeight + 'px',
-              border: '0 none',
-              position: 'relative',
-              left: 0,
-              top: 0,
-              overflow: 'visible'
-            }
+            style: _extends({}, baseStyles.baseDiv, {
+              height: componentHeight
+            })
           },
           _react2.default.createElement('style', {
             dangerouslySetInnerHTML: {
-              __html: '\n                 input[type=\'range\']::-moz-focus-outer {\n                   border: 0;\n                 }\n                 input[type=range]::-ms-track {\n                   width:100%;\n                   height:100%;\n\n                   -webkit-appearance:none;\n                   margin:0px;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range]::-moz-range-track {\n                   width:100%;\n                   height:100%;\n\n                   -moz-appearance:none;\n                   margin:0px;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range] {\n                   cursor: pointer;\n\n                   -webkit-appearance:none;\n                   padding:0px;\n                   border:0 none;\n\n                   background:transparent;\n                   color:transparent;\n                   overflow:visible;\n                 }\n\n                 input[type=range]:focus::-webkit-slider-runnable-track {\n                   background:transparent;\n                   border:transparent;\n                 }\n\n                 input[type=range]:focus {\n                   outline: none;\n                 }\n\n                 input[type=range]::-ms-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                 }\n                 input[type=range]::-moz-range-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                 }\n                 input[type=range]::-webkit-slider-thumb {\n                   width:12px;\n                   height:12px;\n\n                   border-radius:0px;\n                   border:0 none;\n                   background:transparent;\n                   -webkit-appearance:none;\n                 }\n\n                 input[type=range]::-ms-fill-lower {\n                   background:transparent;\n                   border:0 none;\n                 }\n                 input[type=range]::-ms-fill-upper {\n                   background:transparent;\n                   border:0 none;\n                 }\n                 input[type=range]::-ms-tooltip {\n                    display: none;\n                 }'
+              __html: baseStyles.rootStyle
             }
           }),
           _react2.default.createElement('div', {
             id: 'rrp-track',
-            style: _extends({
-              border: 0,
-              position: 'absolute',
-              background: toRgbaString(this.props.trackColor),
-              borderRadius: this.props.height + 'px',
-              width: '100%'
+            style: _extends({}, baseStyles.track, {
+              borderRadius: height,
+              background: toRgbaString(trackColor)
             }, trackPosition(this.props))
           }),
           _react2.default.createElement('div', {
             id: 'rrp-fill',
-            style: _extends({
-              border: 0,
-              position: 'absolute',
-              pointerEvents: 'none',
-              borderRadius: this.props.height + 'px',
-              background: toRgbaString(this.props.fillColor),
+            style: _extends({}, baseStyles.fill, {
+              borderRadius: height,
+              background: toRgbaString(fillColor),
               width: 'calc(100% * ' + percentProgress + ' + ' + (1 - percentProgress) * componentHeight + 'px)'
             }, trackPosition(this.props))
           }),
-          this.props.hideThumb ? null : _react2.default.createElement('div', {
+          hideThumb ? null : _react2.default.createElement('div', {
             id: 'rrp-thumb',
-            style: {
-              position: 'absolute',
-              top: 0,
-              border: '0 none',
-              padding: 0,
-              margin: 0,
-              textAlign: 'center',
-              pointerEvents: 'none',
+            style: _extends({}, baseStyles.thumb, {
               width: componentHeight,
-              height: componentHeight + 'px',
-              borderRadius: componentHeight + 'px',
-              background: toRgbaString(this.props.thumbColor),
-              boxShadow: '0 0 3px black',
+              height: componentHeight,
+              borderRadius: componentHeight,
+              background: toRgbaString(thumbColor),
               left: 'calc((100% - ' + componentHeight + 'px) * ' + percentProgress + ')'
-            }
+            })
           }),
           _react2.default.createElement('input', {
             style: _extends({}, trackPosition(this.props), {
               width: 'calc(100% - ' + componentHeight + 'px)',
               marginLeft: componentHeight / 2,
               marginRight: componentHeight / 2,
-              top: 0,
-              height: componentHeight,
-              WebkitAppearance: 'none',
-              background: 'transparent',
-              position: 'absolute',
-              left: 0,
-              overflow: 'visible',
-              zIndex: 100
-            }),
+              height: componentHeight
+            }, baseStyles.input),
             type: 'range',
-            onChange: this.onChange.bind(this),
+            onChange: this.onChange,
             min: min,
             max: max
           })
