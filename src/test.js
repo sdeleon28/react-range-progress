@@ -33,7 +33,7 @@ test('Testing trackPosition with thumb bigger than track', t => {
   const actual = trackPosition(mock);
   const expected = {
     top: 25,
-    height: '37px'
+    height: 37
   };
   t.equal(actual.top, expected.top, 'sets top gap to correct value');
   t.equal(actual.height, expected.height, 'sets height to max param');
@@ -48,7 +48,7 @@ test('Testing trackPosition with thumb lower than track', t => {
   const actual = trackPosition(mock);
   const expected = {
     top: 0,
-    height: '100px'
+    height: 100
   };
   t.equal(
     actual.top,
@@ -84,7 +84,7 @@ test('Testing component default values when no props set', t => {
 
   t.equal(
     baseDiv.props.style.height,
-    `${defaultProps.thumbSize}px`,
+    defaultProps.thumbSize,
     'base div is thumb default size'
   );
 
@@ -106,7 +106,7 @@ test('Testing component default values when no props set', t => {
   );
   t.equal(
     trackDiv.props.style.borderRadius,
-    `${defaultProps.height}px`,
+    defaultProps.height,
     'track div corner radius equals height prop'
   );
   t.equal(
@@ -127,7 +127,7 @@ test('Testing component default values when no props set', t => {
   );
   t.equal(
     fillDiv.props.style.borderRadius,
-    `${defaultProps.height}px`,
+    defaultProps.height,
     'fill div corner radius equals height prop'
   );
   t.equal(
@@ -155,7 +155,7 @@ test('Testing when height > thumbsize', t => {
   const baseDiv = component.findByQuery('#rrp-baseDiv')[0];
   t.equal(
     baseDiv.props.style.height,
-    `${bigVal}px`,
+    bigVal,
     'when height > thumbsize, base div is set to height prop'
   );
   t.end();
@@ -170,7 +170,7 @@ test('Testing when height < thumbsize', t => {
   const baseDiv = component.findByQuery('#rrp-baseDiv')[0];
   t.equal(
     baseDiv.props.style.height,
-    `${bigVal}px`,
+    bigVal,
     'when height < thumbsize, base div is set to thumbSize prop'
   );
   t.end();
@@ -240,7 +240,7 @@ test('Testing when setting props', t => {
     toRgbaString(color2),
     'thumb is colored as thumbColor'
   );
-  t.equal(thumb.props.style.height, '98px', 'thumb height = thumbSize');
+  t.equal(thumb.props.style.height, 98, 'thumb height = thumbSize');
   t.equal(thumb.props.style.width, 98, 'thumb width = thumbSize');
 
   // nativEvent throws - needs fix
