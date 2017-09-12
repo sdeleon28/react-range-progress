@@ -1,6 +1,7 @@
 react-range-progress
 =======================
 
+
 [![Travis](https://img.shields.io/travis/vgrafe/react-range-progress.svg?maxAge=2592000)](https://travis-ci.org/vgrafe/react-range-progress) [![Codecov](https://img.shields.io/codecov/c/github/vgrafe/react-range-progress.svg?maxAge=2592000)](https://codecov.io/gh/vgrafe/react-range-progress) [![npm](https://img.shields.io/npm/dt/react-range-progress.svg?maxAge=2592000)](https://www.npmjs.com/package/react-range-progress)
 
 A visually customizable range input component for react, inspired by [a post on css-tricks](https://css-tricks.com/custom-interactive-range-inputs/).
@@ -84,3 +85,9 @@ npm test
 ### License
 
 MIT. Copyright (c) 2017 Vincent Grafé.
+
+
+## Disclaimer
+
+This package main purpose was to teach myself about publishing a package on npm.
+Now I see there are a few monthly downloads, I advise any user to look at the source before using this package. If you can just style a couple of divs into a range, do it instead. Styling a range input may be overkill to reach the desired goal.
